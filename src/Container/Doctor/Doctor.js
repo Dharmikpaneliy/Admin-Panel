@@ -39,7 +39,7 @@ function Doctor(props) {
         // expiry: yup.string().required('please enter '),
     }
 
-    
+
     let schema = yup.object().shape(doctor);
 
     const formik = useFormik({
