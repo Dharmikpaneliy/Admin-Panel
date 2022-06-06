@@ -18,6 +18,8 @@ function Medicine(props) {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = useState([]);
     const [update, setUpdate] = useState();
+    const [Dopen, setDOpen] = React.useState(false);
+    const [Did, setDid] = useState();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -28,7 +30,14 @@ function Medicine(props) {
         setOpen(false);
         setUpdate();
         formik.resetForm();
+        setDOpen(false);
     };
+
+    const handleClickDOpen = (id) => {
+        setDOpen(true);
+        setDid(id);
+    };
+
 
 
     let medicine = {
@@ -102,7 +111,7 @@ function Medicine(props) {
         {
             field: 'Delete', headerName: 'Delete', width: 130,
             renderCell: (params) => (
-                <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+                <IconButton aria-label="delete" onClick={() => handleClickDOpen(params.id)}>
                     <DeleteIcon />
                 </IconButton>
             )
@@ -126,10 +135,12 @@ function Medicine(props) {
     const handleDelete = (id) => {
         let localData = JSON.parse(localStorage.getItem("medicine"))
 
-        let filterData = localData.filter((v, i) => v.id !== id);
+        let filterData = localData.filter((v, i) => v.id !== Did);
 
         localStorage.setItem("medicine", JSON.stringify(filterData));
-        loadData()
+        loadData();
+        setDOpen();
+
     }
 
     const loadData = () => {
@@ -151,16 +162,16 @@ function Medicine(props) {
             <Container>
                 <div>
                     <center>
-                        <h1>MEDICINE DATA</h1>
-                        <Button variant="outlined" onClick={handleClickOpen}>
+                        <h1 className='mb-5'>Medicines Data</h1>
+                        <Button className='mt-5' variant="outlined" onClick={handleClickOpen}>
                             Add Medicine
                         </Button>
                     </center>
-                    <div style={{ height: 400, width: '100%' }}>
+
+                    <div style={{ height: 400, width: '100%', margin: '30px' }}>
                         <DataGrid
                             rows={data}
                             columns={columns}
-
                             pageSize={5}
                             rowsPerPageOptions={[5]}
                             checkboxSelection
@@ -232,6 +243,24 @@ function Medicine(props) {
                                 </DialogContent>
                             </Form>
                         </Formik>
+                    </Dialog>
+
+
+                    <Dialog
+                        open={Dopen}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                            {"Are You Sure to Delete?"}
+                        </DialogTitle>
+                        <DialogActions>
+                            <Button onClick={handleClose}>NO</Button>
+                            <Button onClick={handleDelete}>
+                                YES
+                            </Button>
+                        </DialogActions>
                     </Dialog>
                 </div>
             </Container>
