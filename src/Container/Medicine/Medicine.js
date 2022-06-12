@@ -244,8 +244,6 @@ function Medicine(props) {
                             </Form>
                         </Formik>
                     </Dialog>
-
-
                     <Dialog
                         open={Dopen}
                         onClose={handleClose}
