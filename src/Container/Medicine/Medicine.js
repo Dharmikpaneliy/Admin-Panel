@@ -13,6 +13,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useDispatch, useSelector } from 'react-redux';
+import { getmedicine } from '../../Redux/Action/medicine.action';
 
 function Medicine(props) {
     const [open, setOpen] = React.useState(false);
@@ -20,6 +22,13 @@ function Medicine(props) {
     const [update, setUpdate] = useState();
     const [Dopen, setDOpen] = React.useState(false);
     const [Did, setDid] = useState();
+    const [serachData, setSerachData] = useState([]);
+    const medicines = useSelector(state => state.medicines)
+
+
+    console.log(medicines);
+
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -151,8 +160,29 @@ function Medicine(props) {
         }
     }
 
+    const handleSearch = (val) => {
+
+        let localData = JSON.parse(localStorage.getItem("medicine"))
+
+        let fData = localData.filter((e) => 
+           e.name.toString().toLowerCase().includes(val.toLowerCase()) ||
+           e.price.toString().includes(val) || 
+           e.quantity.toString().includes(val) ||
+           e.expiry.toString().includes(val)
+        );
+
+        setSerachData(fData);
+        
+        // console.log(fData);
+    }
+
+    let search = serachData.length > 0 ? serachData : data;
+
+    const dispatch = useDispatch();
+
     useEffect(
         () => {
+            dispatch(getmedicine());
             loadData();
         },
         [])
@@ -163,6 +193,16 @@ function Medicine(props) {
                 <div>
                     <center>
                         <h1 className='mb-5'>Medicines Data</h1>
+
+                        <TextField
+                            margin="dense"
+                            id="search"
+                            label="search"
+                            type="search"
+                            fullWidth
+                            variant="standard"
+                            onChange={(e) => handleSearch(e.target.value)}
+                        />
                         <Button className='mt-5' variant="outlined" onClick={handleClickOpen}>
                             Add Medicine
                         </Button>
@@ -170,7 +210,7 @@ function Medicine(props) {
 
                     <div style={{ height: 400, width: '100%', margin: '30px' }}>
                         <DataGrid
-                            rows={data}
+                            rows={search}
                             columns={columns}
                             pageSize={5}
                             rowsPerPageOptions={[5]}

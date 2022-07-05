@@ -1,0 +1,39 @@
+{
+  "medicines": [
+    {
+      "id": 1,
+      "name" : "Floro",
+      "expiry" : 2022
+    },
+    {
+      "id": 2,
+      "name" : "kevin",
+      "expiry" : 2024
+    },
+    {
+      "id": 3,
+      "name" : "Abcavir",
+      "expiry" : 2025
+    },
+    {
+      "id": 4,
+      "name" : "Lad",
+      "expiry" : 2026
+    },
+    {
+      "id": 5,
+      "name" : "ver",
+      "expiry" : 2023
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
