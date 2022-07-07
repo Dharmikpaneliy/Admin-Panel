@@ -2,28 +2,56 @@
   "medicines": [
     {
       "id": 1,
-      "name" : "Floro",
-      "expiry" : 2022
+      "name": "Floro",
+      "expiry": 2022
     },
     {
       "id": 2,
-      "name" : "kevin",
-      "expiry" : 2024
+      "name": "kevin",
+      "expiry": 2024
     },
     {
       "id": 3,
-      "name" : "Abcavir",
-      "expiry" : 2025
+      "name": "Abcavir",
+      "expiry": 2025
     },
     {
       "id": 4,
-      "name" : "Lad",
-      "expiry" : 2026
+      "name": "Lad",
+      "expiry": 2026
     },
     {
       "id": 5,
-      "name" : "ver",
-      "expiry" : 2023
+      "name": "ver",
+      "expiry": 2023
+    },
+    {
+      "id": 694,
+      "name": "Dharmik",
+      "price": "1200",
+      "quantity": "20",
+      "expiry": "2023"
+    },
+    {
+      "id": 926,
+      "name": "dhan",
+      "price": "20",
+      "quantity": "2000",
+      "expiry": "2023"
+    },
+    {
+      "id": 100,
+      "name": "dcvhxbndjsnuhgcsuc",
+      "price": "200",
+      "quantity": "2000",
+      "expiry": "2021"
+    },
+    {
+      "id": 412,
+      "name": "savan",
+      "price": "120",
+      "quantity": "2000",
+      "expiry": "2025"
     }
   ],
   "comments": [

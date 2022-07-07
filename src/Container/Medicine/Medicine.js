@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { getmedicine } from '../../Redux/Action/medicine.action';
+import { getmedicine, postmedicine } from '../../Redux/Action/medicine.action';
 
 function Medicine(props) {
     const [open, setOpen] = React.useState(false);
@@ -23,10 +23,12 @@ function Medicine(props) {
     const [Dopen, setDOpen] = React.useState(false);
     const [Did, setDid] = useState();
     const [serachData, setSerachData] = useState([]);
+
+
     const medicines = useSelector(state => state.medicines)
 
 
-    console.log(medicines);
+    console.log(medicines.error);
 
 
 
@@ -95,22 +97,26 @@ function Medicine(props) {
     }
 
     const handleSubmitdata = (value) => {
-        let localdata = JSON.parse(localStorage.getItem("medicine"))
+        // let localdata = JSON.parse(localStorage.getItem("medicine"))
 
         let data = {
             id: Math.floor(Math.random() * 1000),
             ...value
         }
+        dispatch(postmedicine(data));
+        // console.log(data);
 
-        if (localdata === null) {
-            localStorage.setItem("medicine", JSON.stringify([data]))
-        } else {
-            localdata.push(data)
-            localStorage.setItem("medicine", JSON.stringify(localdata))
-        }
+
+        // if (localdata === null) {
+        //     localStorage.setItem("medicine", JSON.stringify([data]))
+        // } else {
+        //     localdata.push(data)
+        //     localStorage.setItem("medicine", JSON.stringify(localdata))
+        // }
         setOpen(false);
         loadData();
     }
+
     const columns = [
 
         { field: 'name', headerName: 'Name', width: 130 },
@@ -134,6 +140,7 @@ function Medicine(props) {
             )
         }
     ];
+
     const handleEdit = (data) => {
         setOpen(true)
         setUpdate(data)
@@ -153,11 +160,11 @@ function Medicine(props) {
     }
 
     const loadData = () => {
-        let localData = JSON.parse(localStorage.getItem("medicine"))
+        // let localData = JSON.parse(localStorage.getItem("medicine"))
 
-        if (localData !== null) {
-            setData(localData)
-        }
+        // if (localData !== null) {
+        //     setData(localData)
+        // }
     }
 
     const handleSearch = (val) => {
@@ -176,7 +183,7 @@ function Medicine(props) {
         // console.log(fData);
     }
 
-    let search = serachData.length > 0 ? serachData : data;
+    // let search = serachData.length > 0 ? serachData : data;
 
     const dispatch = useDispatch();
 
@@ -188,7 +195,13 @@ function Medicine(props) {
         [])
 
     return (
-        <Box>
+        medicines.isLoading? (
+           <p>Loading ........</p>
+        ) : ( 
+            medicines.error !== '' ?
+               <p>{medicines.error}</p>
+            :
+            <Box>
             <Container>
                 <div>
                     <center>
@@ -210,13 +223,12 @@ function Medicine(props) {
 
                     <div style={{ height: 400, width: '100%', margin: '30px' }}>
                         <DataGrid
-                            rows={search}
+                            rows={medicines.medicines}
                             columns={columns}
                             pageSize={5}
                             rowsPerPageOptions={[5]}
                             checkboxSelection
                         />
-
                     </div>
                     <Dialog open={open} onClose={handleClose}>
                         <DialogTitle>Add Medicine</DialogTitle>
@@ -303,6 +315,8 @@ function Medicine(props) {
                 </div>
             </Container>
         </Box>
+        )
+        
 
     )
 
