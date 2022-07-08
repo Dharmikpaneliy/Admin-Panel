@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { getmedicine, postmedicine } from '../../Redux/Action/medicine.action';
+import { deleteMedicine, getmedicine, postmedicine } from '../../Redux/Action/medicine.action';
 
 function Medicine(props) {
     const [open, setOpen] = React.useState(false);
@@ -149,11 +149,12 @@ function Medicine(props) {
 
 
     const handleDelete = (id) => {
-        let localData = JSON.parse(localStorage.getItem("medicine"))
+        // let localData = JSON.parse(localStorage.getItem("medicine"))
 
-        let filterData = localData.filter((v, i) => v.id !== Did);
+        // let filterData = localData.filter((v, i) => v.id !== Did);
 
-        localStorage.setItem("medicine", JSON.stringify(filterData));
+        // localStorage.setItem("medicine", JSON.stringify(filterData));
+        dispatch(deleteMedicine(Did));
         loadData();
         setDOpen();
 
