@@ -84,9 +84,39 @@ export const deleteMedicine = (id) => (dispatch) => {
                     var errmess = new Error(error.message);
                     throw errmess;
                 })
-                .then(response => response.json())
-                .then(medicines => dispatch({ type: ActionType.DELETE_MEDICINE, payload: id }))
-                .catch(error => dispatch({ type: ActionType.ERROR_MEDICINE, payload: error.message }))
+            .then(response => response.json())
+            .then(medicines => dispatch({ type: ActionType.DELETE_MEDICINE, payload: id }))
+            .catch(error => dispatch({ type: ActionType.ERROR_MEDICINE, payload: error.message }))
+    } catch (error) {
+        dispatch({ type: ActionType.ERROR_MEDICINE, payload: error.message })
+    }
+}
+
+export const editMedicine = (data) => (dispatch) => {
+    try {
+        return fetch(BASE_URL + 'medicines/' + data.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+            },
+                error => {
+                    var errmess = new Error(error.message);
+                    throw errmess;
+                })
+            .then(response => response.json())
+            .then (medicines => dispatch({ type: ActionType.EDIT_MEDICINE, payload: medicines }))
+            .catch(error => dispatch({ type: ActionType.ERROR_MEDICINE, payload: error.message }) )
     } catch (error) {
         dispatch({ type: ActionType.ERROR_MEDICINE, payload: error.message })
     }

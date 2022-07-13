@@ -1,11 +1,39 @@
 {
   "medicines": [
     {
-      "id": 412,
-      "name": "savan",
-      "price": "120",
-      "quantity": "2000",
+      "id": 223,
+      "name": "HP",
+      "price": "2",
+      "quantity": "3000",
       "expiry": "2025"
+    },
+    {
+      "id": 981,
+      "name": "PK",
+      "price": "1000",
+      "quantity": "100",
+      "expiry": "2029"
+    },
+    {
+      "id": 982,
+      "name": "CK",
+      "price": "10",
+      "quantity": "1000",
+      "expiry": "2024"
+    },
+    {
+      "id": 804,
+      "name": "DK",
+      "price": "10",
+      "quantity": "2000",
+      "expiry": "2030"
+    },
+    {
+      "id": 911,
+      "name": "BK",
+      "price": "2",
+      "quantity": "3000",
+      "expiry": "2029"
     }
   ],
   "comments": [
