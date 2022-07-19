@@ -36,11 +36,62 @@
       "expiry": "2029"
     }
   ],
-  "comments": [
+  "doctors": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 14,
+      "name": "j",
+      "degree": "n",
+      "email": "n",
+      "department": "n"
+    },
+    {
+      "id": 868,
+      "name": "j",
+      "degree": "n",
+      "email": "n",
+      "department": "n"
+    },
+    {
+      "id": 999,
+      "name": "j",
+      "degree": "n",
+      "email": "n",
+      "department": "n"
+    },
+    {
+      "id": 314,
+      "name": "j",
+      "degree": "n",
+      "email": "n",
+      "department": "n"
+    },
+    {
+      "id": 465,
+      "name": "k",
+      "degree": "k",
+      "email": "k",
+      "department": "k"
+    },
+    {
+      "id": 541,
+      "name": "k",
+      "degree": "k",
+      "email": "k",
+      "department": "k"
+    },
+    {
+      "id": 534,
+      "name": "o",
+      "degree": "o",
+      "email": "o",
+      "department": "o"
+    },
+    {
+      "id": 144,
+      "name": "o",
+      "degree": "o",
+      "email": "o",
+      "department": "o"
     }
   ],
   "profile": {
