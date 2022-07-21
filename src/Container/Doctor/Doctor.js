@@ -103,7 +103,6 @@ function Doctor(props) {
       id: Math.floor(Math.random() * 1000),
       ...value
     }
-    console.log("dcdcdcd");
     dispatch(postdata(data));
 
     // if (localdata === null) {

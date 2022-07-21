@@ -104,7 +104,8 @@ export default function Layout({ children }) {
     let listItem = [
         { lable: 'Medicine', to: '/medicine', icon: <MedicalServicesIcon /> },
         { lable: 'Doctor', to: '/doctor', icon: <PersonIcon /> },
-        { lable: 'Counter', to: '/counter', icon: <HourglassEmptyIcon /> }
+        { lable: 'Counter', to: '/counter', icon: <HourglassEmptyIcon /> },
+        { lable: 'PromicesExample', to: '/promicesExample', icon: <HourglassEmptyIcon /> }
     ]
 
     return (
