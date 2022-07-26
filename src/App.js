@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { configurestore } from './Redux/Store';
 import { PersistGate } from 'redux-persist/integration/react'
 import PromicesExample from './Container/PromicesExample/PromicesExample';
+import usememoExample from './Container/Hook Example/usememoExample';
+import UsecallbackExample from './Container/Hook Example/UsecallbackExample';
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
               <Route exact path={"/doctor"} component={Doctor} />
               <Route exact path={"/counter"} component={Counter} />
               <Route exact path={"/promicesExample"} component={PromicesExample}/>
+              <Route exact path={"/memoExample"} component={usememoExample}/>
+              <Route exact path={"/callbackExample"} component={UsecallbackExample}/>
             </Switch>
           </Layout>
         </PersistGate>

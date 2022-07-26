@@ -105,7 +105,9 @@ export default function Layout({ children }) {
         { lable: 'Medicine', to: '/medicine', icon: <MedicalServicesIcon /> },
         { lable: 'Doctor', to: '/doctor', icon: <PersonIcon /> },
         { lable: 'Counter', to: '/counter', icon: <HourglassEmptyIcon /> },
-        { lable: 'PromicesExample', to: '/promicesExample', icon: <HourglassEmptyIcon /> }
+        { lable: 'Promices Example', to: '/promicesExample', icon: <HourglassEmptyIcon /> },
+        { lable: 'Memo Example', to: '/memoExample', icon: <HourglassEmptyIcon /> },
+        { lable: 'Call Back Example', to: '/callbackExample', icon: <HourglassEmptyIcon /> }
     ]
 
     return (
