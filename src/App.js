@@ -10,27 +10,32 @@ import { PersistGate } from 'redux-persist/integration/react'
 import PromicesExample from './Container/PromicesExample/PromicesExample';
 import usememoExample from './Container/Hook Example/usememoExample';
 import UsecallbackExample from './Container/Hook Example/UsecallbackExample';
+import { ThemeProvider } from './Context/CreateContext';
+import Context from './Container/Context/Context';
 
 function App() {
 
-  let {store, persistor} = configurestore();
+  let { store, persistor } = configurestore();
 
   return (
     <>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Layout>
-            <Switch>
-              <Route exact path={"/medicine"} component={Medicine} />
-              <Route exact path={"/doctor"} component={Doctor} />
-              <Route exact path={"/counter"} component={Counter} />
-              <Route exact path={"/promicesExample"} component={PromicesExample}/>
-              <Route exact path={"/memoExample"} component={usememoExample}/>
-              <Route exact path={"/callbackExample"} component={UsecallbackExample}/>
-            </Switch>
-          </Layout>
-        </PersistGate>
-      </Provider>
+      <ThemeProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Layout>
+              <Switch>
+                <Route exact path={"/medicine"} component={Medicine} />
+                <Route exact path={"/doctor"} component={Doctor} />
+                <Route exact path={"/counter"} component={Counter} />
+                <Route exact path={"/promicesExample"} component={PromicesExample} />
+                <Route exact path={"/memoExample"} component={usememoExample} />
+                <Route exact path={"/callbackExample"} component={UsecallbackExample} />
+                <Route exact path={"/context"} component={Context }/>
+              </Switch>
+            </Layout>
+          </PersistGate>
+        </Provider>
+      </ThemeProvider>  
     </>
   );
 }

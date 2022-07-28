@@ -107,7 +107,8 @@ export default function Layout({ children }) {
         { lable: 'Counter', to: '/counter', icon: <HourglassEmptyIcon /> },
         { lable: 'Promices Example', to: '/promicesExample', icon: <HourglassEmptyIcon /> },
         { lable: 'Memo Example', to: '/memoExample', icon: <HourglassEmptyIcon /> },
-        { lable: 'Call Back Example', to: '/callbackExample', icon: <HourglassEmptyIcon /> }
+        { lable: 'Call Back Example', to: '/callbackExample', icon: <HourglassEmptyIcon /> },
+        { lable: 'Context', to: '/context', icon: <HourglassEmptyIcon /> }
     ]
 
     return (
