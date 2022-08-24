@@ -100,7 +100,7 @@ function Doctor(props) {
     // let localdata = JSON.parse(localStorage.getItem("doctor"))
 
     let data = {
-      id: Math.floor(Math.random() * 1000),
+      // id: Math.floor(Math.random() * 1000),
       ...value
     }
     dispatch(postdata(data));
