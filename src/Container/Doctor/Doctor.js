@@ -55,6 +55,7 @@ function Doctor(props) {
     degree: yup.string().required('please enter your degree'),
     email: yup.string().required('please enter your email'),
     department: yup.string().required('please enter your department'),
+    file: yup.mixed().required('please select your file')
   }
 
 
@@ -65,7 +66,8 @@ function Doctor(props) {
       name: '',
       degree: '',
       email: '',
-      department: ''
+      department: '',
+      file: ''
     },
     validationSchema: schema,
     onSubmit: (value, { resetForm }) => {
@@ -93,17 +95,17 @@ function Doctor(props) {
     setOpen(false)
     setUpdate()
     loadData()
-    formik.setValues()
+    // formik.setValues()
   }
 
   const handleSubmitdata = (value) => {
     // let localdata = JSON.parse(localStorage.getItem("doctor"))
 
-    let data = {
-      // id: Math.floor(Math.random() * 1000),
-      ...value
-    }
-    dispatch(postdata(data));
+    // let data = {
+    //   // id: Math.floor(Math.random() * 1000),
+    //   ...value
+    // }
+    dispatch(postdata(value));
 
     // if (localdata === null) {
     //   localStorage.setItem("doctor", JSON.stringify([data]))
@@ -111,9 +113,18 @@ function Doctor(props) {
     //   localdata.push(data)
     //   localStorage.setItem("doctor", JSON.stringify(localdata))
     // }
-    
+
     handleClose()
     // loadData();
+  }
+  const handleEdit = (data) => {
+    console.log(data);
+    formik.setValues({
+      ...data,
+      file: data.url
+    });
+    setOpen(true)
+    setUpdate(true)
   }
   const columns = [
 
@@ -122,9 +133,15 @@ function Doctor(props) {
     { field: 'email', headerName: 'E-mail', width: 130 },
     { field: 'department', headerName: 'Department', width: 130 },
     {
+      field: 'file', headerName: 'Image', width: 130,
+      renderCell: (params) => (
+        <img src={params.row.file} height={50} width={50} />
+      )
+    },
+    {
       field: 'Delete', headerName: 'Delete', width: 130,
       renderCell: (params) => (
-        <IconButton aria-label="delete" onClick={() => handleClickDOpen(params.id)}>
+        <IconButton aria-label="delete" onClick={() => handleClickDOpen(params.row)}>
           <DeleteIcon />
         </IconButton>
       )
@@ -138,11 +155,6 @@ function Doctor(props) {
       )
     }
   ];
-  const handleEdit = (data) => {
-    setOpen(true)
-    setUpdate(data)
-    formik.setValues(data);
-  }
 
 
   const handleDelete = (id) => {
@@ -174,7 +186,7 @@ function Doctor(props) {
     },
     [])
 
-    console.log(formik.errors);
+  console.log(formik.errors);
 
   return (
     <Box>
@@ -251,6 +263,14 @@ function Doctor(props) {
                     defaultValue={formik.values.department}
                     helperText={formik.errors.department}
                     error={formik.errors.department ? true : false}
+                  />
+                  <input
+                    type="file"
+                    id="file"
+                    onChange={(e) => formik.setFieldValue('file', e.target.files[0])}
+                    defaultValue={formik.values.file}
+                    helperText={formik.errors.file}
+                    error={formik.errors.file ? true : false}
                   />
                   <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
